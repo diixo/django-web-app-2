@@ -1,5 +1,5 @@
-## django-web-app-2 (continuous of django-web-app)
-Branched from [django-web-app](https://github.com/diixo/django-web-app)
+## django-web-app-2 (continuous of [django-web-app](https://github.com/diixo/django-web-app))
+
 
 ### Description:
 - Django 4.2.8
