@@ -28,5 +28,11 @@ py manage.py runserver
 py manage.py migrate
 ```
 
+- For any model changes we should make migrations:
+```bash
+py .\manage.py makemigrations
+py .\manage.py migrate
+```
+
 ### References
 [goit-web-django-hw](https://github.com/diixo/goit-web-django-hw)
