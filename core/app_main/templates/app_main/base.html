@@ -32,8 +32,16 @@
             </a>
           </header>
 
-          {% block content %}
-          {% endblock %}
+      
+          <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+
+              {% block content %}
+              {% endblock %}
+
+              <a class="btn btn-primary btn-lg" href="">Upload image</a>
+            </div>
+          </div>
       
           <footer class="pt-3 mt-4 text-body-secondary border-top">
             &copy; 2024
