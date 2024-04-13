@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import PictureForm
@@ -22,14 +23,20 @@ def pictures(request):
     return render(request, "app_main/pictures.html", 
                   context={"title": "pictures output", "pictures": imgs, "media":settings.MEDIA_URL})
 
-def remove(request):
-    pass
-
+def remove(request, pic_id):
+    picture = Picture.objects.filter(pk=pic_id)
+    try:
+        os.unlink(os.path.join(settings.MEDIA_ROOT, str(picture.first().path)))
+    except OSError as e:
+        print(e)
+    picture.delete()
+    return redirect(to="app_instagram:pictures")
 
 def edit(request, pic_id):
     # <input type="text" class="form-control" value="{{pic.description}}" name="description">
     if request.method == 'POST':
         description = request.POST.get('description')
+        #if only on input we should not use separated form
         picture = Picture.objects.filter(pk=pic_id).update(description=description)
         return redirect('app_main:pictures')
 
