@@ -19,4 +19,20 @@ def upload(request):
 
 def pictures(request):
     imgs = Picture.objects.all()
-    return render(request, "app_main/pictures.html", context={"title": "pictures output", "pictures": imgs, "media":settings.MEDIA_URL})
+    return render(request, "app_main/pictures.html", 
+                  context={"title": "pictures output", "pictures": imgs, "media":settings.MEDIA_URL})
+
+def remove(request):
+    pass
+
+
+def edit(request, pic_id):
+    # <input type="text" class="form-control" value="{{pic.description}}" name="description">
+    if request.method == 'POST':
+        description = request.POST.get('description')
+        picture = Picture.objects.filter(pk=pic_id).update(description=description)
+        return redirect('app_main:pictures')
+
+    picture = Picture.objects.filter(pk=pic_id).first()
+    return render(request, "app_main/edit.html", 
+                  context={"title": "pictures output", "pic": picture, "media":settings.MEDIA_URL})

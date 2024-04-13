@@ -1,0 +1,26 @@
+{% extends "app_main/base.html" %}
+
+{% block content %}
+
+<h1 class="display-5 fw-bold">Upload car image</h1>
+
+<p class="col-md-8 fs-4">Edit image</p>
+
+<form action="{% url 'app_main:edit' pic.id %}" method="post">
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <img src="{{media}}{{pic.path}}" class="card-img-top" alt="pic">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" value="{{pic.description}}" name="description">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+{% endblock %}
+
+{% block imgs %}
+{% endblock %}
